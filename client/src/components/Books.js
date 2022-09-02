@@ -20,9 +20,6 @@ export default class Books extends Component {
     this.setState({
       books: res.data,
     });
-    // console.log(this.description)
-    // this.setState({dueDate: res.dueDate})
-    console.log(this.state.books);
   };
 
   render() {
@@ -40,25 +37,29 @@ export default class Books extends Component {
             boxShadow: "5px 5px 5px white",
           }}
         >
-          {this.state.books === undefined ? <h1>No Books in collection</h1> : this.state.books.map((obj) => {
-            return (
-              <Carousel.Item key={obj.id}>
-                <Card
-                  style={{
-                    backgroundColor: "grey",
-                  }}
-                >
-                  <Card.Body>
-                    <Card.Title>{obj.title}</Card.Title>
-                    <Card.Text>
-                      Description: {obj.description} <br />
-                      status: {obj.status}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Carousel.Item>
-            );
-          })}
+          {this.state.books === undefined ? (
+            <h1>No Books in collection</h1>
+          ) : (
+            this.state.books.map((obj) => {
+              return (
+                <Carousel.Item key={obj.id}>
+                  <Card
+                    style={{
+                      backgroundColor: "grey",
+                    }}
+                  >
+                    <Card.Body>
+                      <Card.Title>{obj.title}</Card.Title>
+                      <Card.Text>
+                        Description: {obj.description} <br />
+                        status: {obj.status}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Carousel.Item>
+              );
+            })
+          )}
         </Carousel>
       </div>
     );
