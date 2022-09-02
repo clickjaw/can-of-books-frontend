@@ -40,7 +40,7 @@ export default class Books extends Component {
             boxShadow: "5px 5px 5px white",
           }}
         >
-          {this.state.books.map((obj) => {
+          {this.state.books === undefined ? <h1>No Books in collection</h1> : this.state.books.map((obj) => {
             return (
               <Carousel.Item key={obj.id}>
                 <Card
