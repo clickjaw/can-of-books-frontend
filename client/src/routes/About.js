@@ -12,6 +12,7 @@ export default class Profile extends Component {
     </nav>
     <Outlet />
     <p>Made By Curtrick Walton</p>
+    <a href="https://github.com/CurtWal/can-of-books-backend">MyGithub</a>
     </div>
     )
   }

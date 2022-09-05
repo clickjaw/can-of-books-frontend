@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Carousel } from "react-bootstrap";
-
+import AddBook from "./AddBook";
+import DeleteBook from "./DeleteBook";
+// import BookFormModal from './BookFormModal'
 export default class Books extends Component {
   constructor(props) {
     super(props);
@@ -21,46 +23,48 @@ export default class Books extends Component {
       books: res.data,
     });
   };
+  addNewBooks = (newBook) => {
+    this.setState({ books: [...this.state.books, newBook] });
+  };
 
   render() {
     return (
       <div>
-        <Carousel
-          fade
-          style={{
-            alignItems: "center",
-            marginLeft: "10px",
-            textAlign: "center",
-            width: "450px",
-            height: "150px",
-            color: "white",
-            boxShadow: "5px 5px 5px white",
-          }}
-        >
-          {this.state.books === undefined ? (
-            <h1>No Books in collection</h1>
-          ) : (
-            this.state.books.map((obj) => {
-              return (
-                <Carousel.Item key={obj.id}>
-                  <Card
-                    style={{
-                      backgroundColor: "grey",
-                    }}
-                  >
-                    <Card.Body>
-                      <Card.Title>{obj.title}</Card.Title>
-                      <Card.Text>
-                        Description: {obj.description} <br />
-                        status: {obj.status}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Carousel.Item>
-              );
-            })
-          )}
-        </Carousel>
+        <AddBook addNewBooks={this.addNewBooks} />
+        {this.state.books.length !== 0 ? (
+          <Carousel fade style={{ width: "36rem" }}>
+            {this.state.books.map((book) => (
+              <Carousel.Item key={book._id}>
+                <Card
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    paddingBottom: "2rem",
+                    backgroundColor: "black",
+                    color: "white",
+                  }}
+                >
+                  <Card.Body>
+                    <Card.Title>{book.title}</Card.Title>
+                    <Card.Text>{book.description}</Card.Text>
+                    <Card.Text>{book.status}</Card.Text>
+                    <Card.Footer>
+                      {
+                        <DeleteBook
+                          bookId={book._id}
+                          getAllBooks={this.getBooks}
+                        />
+                      }
+                    </Card.Footer>
+                  </Card.Body>
+                </Card>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        ) : (
+          <h3>No Books in collection, FeelsBad</h3>
+        )}
       </div>
     );
   }
