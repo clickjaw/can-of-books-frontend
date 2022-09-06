@@ -57,8 +57,12 @@ export default class Books extends Component {
                           getAllBooks={this.getBooks}
                         />
                       }
-                      {<UpdateBook bookId={book._id}
-                      getAllBooks={this.getBooks}/>}
+                      {
+                        <UpdateBook
+                          bookId={book._id}
+                          getAllBooks={this.getBooks}
+                        />
+                      }
                     </Card.Footer>
                   </Card.Body>
                 </Card>

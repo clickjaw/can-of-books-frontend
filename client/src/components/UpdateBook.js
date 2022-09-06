@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from "react";
+import axios from "axios";
 import { Button, Form, Modal } from "react-bootstrap";
-
 
 export default class UpdataBook extends Component {
   constructor(props) {
@@ -9,7 +8,7 @@ export default class UpdataBook extends Component {
 
     this.state = {
       book_id: this.props.bookId,
-      clicked: false
+      clicked: false,
     };
   }
 
@@ -21,82 +20,76 @@ export default class UpdataBook extends Component {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-    };try{
-     await axios.put(url,editedBook);
-    this.setState({
-      clicked: false
-    })
-    this.props.getAllBooks(); 
-    }catch(error){
-      console.log(error)
+    };
+    try {
+      await axios.put(url, editedBook);
+      this.setState({
+        clicked: false,
+      });
+      this.props.getAllBooks();
+    } catch (error) {
+      console.log(error);
     }
-    
   };
   handleOpen = () => {
     this.setState({
-      clicked: true
-    })
-  }
+      clicked: true,
+    });
+  };
   handleClosed = () => {
     this.setState({
-      clicked: false
-    })
-  }
+      clicked: false,
+    });
+  };
   render() {
     return (
       <>
-    <Button onClick={this.handleOpen}>Edit</Button>
-    <Modal
-        show={this.state.clicked}
-        onHide={this.handleClosed}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            Edit Your book
-            <br></br>
-            <h6>All fields required before book can be submitted</h6>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={this.handleUpdate}>
-            <Form.Group className="mb-3" controlId="title">
-              <Form.Label>Book Title </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Book Title: The 3 Little Pigs"
-              />
-            </Form.Group>
+        <Button onClick={this.handleOpen}>Edit</Button>
+        <Modal
+          show={this.state.clicked}
+          onHide={this.handleClosed}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Edit Your book
+              <br></br>
+              <h6>All fields required before book can be submitted</h6>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={this.handleUpdate}>
+              <Form.Group className="mb-3" controlId="title">
+                <Form.Label>Book Title </Form.Label>
+                <Form.Control type="text" placeholder="The 3 Little Pigs" />
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="description">
-              <Form.Label>Book Description</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Three Little Pigs bulding their Homes"
-              />
-            </Form.Group>
+              <Form.Group className="mb-3" controlId="description">
+                <Form.Label>Book Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Three Little Pigs Bulding Their Homes"
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="status">
-              <Form.Label>Book Status</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Sold Out"
-              />
-            </Form.Group>
+              <Form.Group className="mb-3" controlId="status">
+                <Form.Label>Book Status</Form.Label>
+                <Form.Control type="text" placeholder="Sold Out" />
+              </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit Edited Book!
+              <Button variant="primary" type="submit">
+                Submit Edited Book!
+              </Button>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClosed}>
+              Close
             </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClosed}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          </Modal.Footer>
+        </Modal>
       </>
-    )
+    );
   }
 }
