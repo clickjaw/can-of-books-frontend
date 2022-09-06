@@ -1,56 +1,39 @@
-'use strict';
+"use strict";
 
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const bookModel = require('./models/Books');
-const getBooks = require('./routes/getBooks');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
 const app = express();
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json())
+const mongoose = require('mongoose')
 
 const PORT = process.env.PORT || 3002;
 
-mongoose.connect(process.env.MERNDB_URL)
-  .then(() => console.log("Connected to Mongoose"))
-  .catch((err) => console.log(err));
+mongoose.connect(process.env.MERNDB_URL, ()=>{
+  console.log('Connected to MongoDB');
+},
+err=>console.log(err))
 
 
-app.get('/test', (request, response) => {
 
-  response.send('test request received')
+const getBooks = require("./routes/getBooks");
+const bookPostRoute = require("./routes/bookPostRoute");
+const bookRemoveRoute = require("./routes/bookRemoveRoute");
+const home = require("./routes/home");
 
-})
+mongoose.connect(process.env.MERNDB_URL, ()=>{
+  console.log('Connected to MongoDB');
+},
+err=>console.log(err))
 
-const bookData = async (req, res) => {
-  try {
-    let book1 = new bookModel({
-      title: "Pig Can Fly",
-      description: "Flying Pigs",
-      status: "Sold Out"
-    })
-    let book2 = new bookModel({
-      title: "The Fastest Runner",
-      description: "The Fastest Runner That ever Lived",
-      status: "InStock"
-    })
-    let book3 = new bookModel({
-      title: "Best Meals Every Made",
-      description: "A book of home cooked meals",
-      status: "2 Left"
-    })
-    await book1.save()
-    await book2.save()
-    await book3.save()
-  } catch (error) {
-    console.log(error);
-}
-}
-bookData();
+app.use(home);
+app.use(getBooks);
+app.use(bookPostRoute);
+app.use(bookRemoveRoute);
 
-app.use(getBooks)
+
+
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

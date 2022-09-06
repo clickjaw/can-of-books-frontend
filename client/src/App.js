@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from 'react'
-
-import Books from "./components/Books"
+import Main from './components/Main'
 
 export default class App extends Component {
   render() {
     return (
-        <Books/>
+      <>
+        <Main/>
+      </>
     )
   }
 }
