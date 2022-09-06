@@ -9,7 +9,7 @@ router.get('/books', async (req,res) => {
         const myBooks = await Book.find({});
         res.send(myBooks);
     } catch (error) {
-        res.send(error)
+        res.send("It's still not working")
     }
     
 })

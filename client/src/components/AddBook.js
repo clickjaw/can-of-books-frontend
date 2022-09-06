@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import Button from 'react-bootstrap/Button'
 
-import BookModal from "./BookModal"
-
-
+import BookModal from './BookModal'
 export default class AddBook extends Component {
 
     constructor(props) {

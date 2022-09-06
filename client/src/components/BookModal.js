@@ -1,3 +1,5 @@
+//copied from Storm's
+
 import React, { Component } from 'react'
 import { Form, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
@@ -23,15 +25,16 @@ export default class BookModal extends Component {
 
   handleFormSubmit = async(e) => {
     e.preventDefault()
-    const url = `http://localhost:3002/books`
+    const url = `${process.env.REACT_APP_SERVER}books`
     let newBookBody = {
       "title":e.target.title.value,
       "image":e.target.image.value,
-      // "description":e.target.description.value,
+      "description":e.target.description.value,
       "status":e.target.status.checked
     }
     try {
       await axios.post(url, newBookBody).then((res)=> this.props.addNewBooks(res.data)).catch(err=>console.log(err.message))
+      // not sure if clearing out the form field is necessary since i immediately close the modal, but here we are
       e.target.title.value = ''
       e.target.image.value = ''
       e.target.description.value = ''

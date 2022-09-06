@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from 'react'
-import Main from './components/Main'
+import BestBooks from './components/BestBooks'
 
 export default class App extends Component {
   render() {
     return (
       <>
-        <Main/>
+      Grease
+        <BestBooks/>
       </>
     )
   }

@@ -4,7 +4,6 @@ const Book = require('../models/Book')
 
 router.post('/books', async(req,res)=>{
   try {
-   
     const newBook = await Book.create(req.body)
     await newBook.save()
     console.log(newBook)

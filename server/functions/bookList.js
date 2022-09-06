@@ -24,3 +24,5 @@ const bookData = async () => {
       console.log(error);
   }
   }
+
+  bookData()
