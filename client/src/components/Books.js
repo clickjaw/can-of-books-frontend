@@ -3,6 +3,7 @@ import axios from "axios";
 import { Card, Carousel } from "react-bootstrap";
 import AddBook from "./AddBook";
 import DeleteBook from "./DeleteBook";
+import UpdateBook from "./UpdateBook";
 // import BookFormModal from './BookFormModal'
 export default class Books extends Component {
   constructor(props) {
@@ -56,6 +57,8 @@ export default class Books extends Component {
                           getAllBooks={this.getBooks}
                         />
                       }
+                      {<UpdateBook bookId={book._id}
+                      getAllBooks={this.getBooks}/>}
                     </Card.Footer>
                   </Card.Body>
                 </Card>

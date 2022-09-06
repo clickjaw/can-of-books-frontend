@@ -9,6 +9,7 @@ const bookModel = require("./models/Books");
 const getBooks = require("./routes/getBooks");
 const createBooks = require("./routes/createBook");
 const deleteBook = require("./routes/deleteBook");
+const updateBook = require("./routes/updateBook");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,5 +56,5 @@ bookData();
 app.use(getBooks);
 app.use(createBooks);
 app.use(deleteBook);
-
+app.use('/updatebook',updateBook);
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

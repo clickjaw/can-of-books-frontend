@@ -1,59 +1,66 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import axios from 'axios'
 import { Button, Form, Modal } from "react-bootstrap";
-import axios from "axios";
 
-export default class BookFormModal extends Component {
+
+export default class UpdataBook extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      show: this.props.show,
+      book_id: this.props.bookId,
+      clicked: false
     };
   }
-  closeModal = () => {
-    this.setState({ show: false });
-    this.props.addButtonFalse();
-  };
 
-  handleFormSubmit = async (e) => {
+  handleUpdate = async (e) => {
     e.preventDefault();
-    const url = `http://localhost:3002/new-book`;
-    let newBookBody = {
+    // get the direct url to the book the user wants to delete
+    const url = `http://localhost:3002/updatebook/${this.state.book_id}`;
+    let editedBook = {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-    };
-    try {
-      await axios
-        .post(url, newBookBody)
-        .then((res) => this.props.addNewBooks(res.data))
-        .catch((err) => console.log(err.message));
-      e.target.title.value = "";
-      e.target.description.value = "";
-      e.target.status.value = "";
-      this.closeModal();
-    } catch (error) {
-      console.log(error.message);
+    };try{
+     await axios.put(url,editedBook);
+    this.setState({
+      clicked: false
+    })
+    this.props.getAllBooks(); 
+    }catch(error){
+      console.log(error)
     }
+    
   };
-
+  handleOpen = () => {
+    this.setState({
+      clicked: true
+    })
+  }
+  handleClosed = () => {
+    this.setState({
+      clicked: false
+    })
+  }
   render() {
     return (
-      <Modal
-        show={this.state.show}
-        onHide={this.closeModal}
+      <>
+    <Button onClick={this.handleOpen}>Edit</Button>
+    <Modal
+        show={this.state.clicked}
+        onHide={this.handleClosed}
         backdrop="static"
         keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            Add A Book
+            Edit Your book
             <br></br>
             <h6>All fields required before book can be submitted</h6>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={this.handleFormSubmit}>
+          <Form onSubmit={this.handleUpdate}>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Book Title </Form.Label>
               <Form.Control
@@ -66,7 +73,7 @@ export default class BookFormModal extends Component {
               <Form.Label>Book Description</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Three Little Pigs Building their Homes"
+                placeholder="Three Little Pigs bulding their Homes"
               />
             </Form.Group>
 
@@ -79,16 +86,17 @@ export default class BookFormModal extends Component {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-              Submit Book!
+              Submit Edited Book!
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={this.closeModal}>
+          <Button variant="secondary" onClick={this.handleClosed}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-    );
+      </>
+    )
   }
 }
