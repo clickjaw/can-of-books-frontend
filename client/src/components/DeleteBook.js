@@ -15,18 +15,23 @@ export default class DeleteBook extends Component {
     // get the direct url to the book the user wants to delete
     try {
       const url = `http://localhost:3002/books/${this.state.book_id}`;
-    await axios.delete(url);
-    this.props.getAllBooks();
+      await axios.delete(url);
+      this.props.getAllBooks();
     } catch (error) {
       alert(error.message);
     }
-      
   };
 
   render() {
     return (
-      <div >
-        <Button variant="danger" className="DeleteButton" onClick={this.handleDelete}>Delete</Button>
+      <div>
+        <Button
+          variant="danger"
+          className="DeleteButton"
+          onClick={this.handleDelete}
+        >
+          Delete
+        </Button>
       </div>
     );
   }

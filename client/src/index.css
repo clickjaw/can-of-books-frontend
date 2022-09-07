@@ -16,7 +16,10 @@ code {
 .nav-link{
   color: white;
 }
-
+.nav-link:hover{
+  transition: 0.4s;
+  color: lightgreen;
+}
 .AddButton{
   margin-top: 25px;
   margin-bottom: 10px;

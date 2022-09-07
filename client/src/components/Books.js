@@ -30,11 +30,10 @@ export default class Books extends Component {
 
   render() {
     return (
-      
       <div className="ShowBooks">
         <AddBook addNewBooks={this.addNewBooks} />
         {this.state.books.length !== 0 ? (
-          <Carousel  fade style={{ width: "36rem"}}>
+          <Carousel fade style={{ width: "36rem" }}>
             {this.state.books.map((book) => (
               <Carousel.Item key={book._id}>
                 <Card
@@ -47,12 +46,21 @@ export default class Books extends Component {
                     color: "white",
                   }}
                 >
-                  <Card.Img variant="top" src={book.img} style={{height: "350px"}}/>
+                  <Card.Img
+                    variant="top"
+                    src={book.img}
+                    style={{ height: "400px" }}
+                  />
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <Card.Text>{book.description}</Card.Text>
                     <Card.Text>{book.status}</Card.Text>
-                    <Card.Footer style={{display: "flex", justifyContent: "space-between"}}>
+                    <Card.Footer
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
                       {
                         <DeleteBook
                           bookId={book._id}
