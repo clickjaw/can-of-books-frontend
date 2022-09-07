@@ -28,7 +28,7 @@ export default class BookFormModal extends Component {
       await axios
         .post(url, newBookBody)
         .then((res) => this.props.addNewBooks(res.data))
-        .catch((err) => console.log(err.message));
+        .catch((err) => alert("Fields Not Filled, Try Again", err));
       this.closeModal();
     } catch (error) {
       console.log(error.message);
