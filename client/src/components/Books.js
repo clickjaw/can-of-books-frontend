@@ -47,7 +47,7 @@ export default class Books extends Component {
                     color: "white",
                   }}
                 >
-                  <Card.Img variant="top" src={book.img} />
+                  <Card.Img variant="top" src={book.img} style={{height: "350px"}}/>
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <Card.Text>{book.description}</Card.Text>

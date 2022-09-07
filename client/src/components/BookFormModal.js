@@ -29,10 +29,6 @@ export default class BookFormModal extends Component {
         .post(url, newBookBody)
         .then((res) => this.props.addNewBooks(res.data))
         .catch((err) => console.log(err.message));
-        e.target.img.value = "";
-      e.target.title.value = "";
-      e.target.description.value = "";
-      e.target.status.value = "";
       this.closeModal();
     } catch (error) {
       console.log(error.message);
@@ -55,7 +51,7 @@ export default class BookFormModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form onSubmit={this.handleFormSubmit}>
+          <Form onSubmit={this.handleFormSubmit}>
             <Form.Group className="mb-3" controlId="img">
               <Form.Label>Book Cover</Form.Label>
               <Form.Control
@@ -81,10 +77,7 @@ export default class BookFormModal extends Component {
 
             <Form.Group className="mb-3" controlId="status">
               <Form.Label>Book Status</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Sold Out"
-              />
+              <Form.Control type="text" placeholder="Sold Out" />
             </Form.Group>
 
             <Button variant="primary" type="submit">
