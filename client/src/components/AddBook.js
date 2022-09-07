@@ -22,7 +22,7 @@ export default class AddBook extends Component {
 
   render() {
     return (
-      <>
+      <div className='AddButton'>
         {/* Set the modal state false before the button is click */}
         {!this.state.show && (
           <Button onClick={this.handleClick}>Add Book</Button>
@@ -35,7 +35,7 @@ export default class AddBook extends Component {
             show={this.state.show}
           />
         )}
-      </>
+      </div>
     );
   }
 }

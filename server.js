@@ -27,31 +27,31 @@ app.get("/test", (request, response) => {
   response.send("test request received");
 });
 
-const bookData = async (req, res) => {
-  try {
-    let book1 = new bookModel({
-      title: "Pig Can Fly",
-      description: "Flying Pigs",
-      status: "Sold Out",
-    });
-    let book2 = new bookModel({
-      title: "The Fastest Runner",
-      description: "The Fastest Runner That ever Lived",
-      status: "InStock",
-    });
-    let book3 = new bookModel({
-      title: "Best Meals Every Made",
-      description: "A book of home cooked meals",
-      status: "2 Left",
-    });
-    await book1.save();
-    await book2.save();
-    await book3.save();
-  } catch (error) {
-    console.log(error);
-  }
-};
-bookData();
+// const bookData = async (req, res) => {
+//   try {
+//     let book1 = new bookModel({
+//       title: "Pig Can Fly",
+//       description: "Flying Pigs",
+//       status: "Sold Out",
+//     });
+//     let book2 = new bookModel({
+//       title: "The Fastest Runner",
+//       description: "The Fastest Runner That ever Lived",
+//       status: "InStock",
+//     });
+//     let book3 = new bookModel({
+//       title: "Best Meals Every Made",
+//       description: "A book of home cooked meals",
+//       status: "2 Left",
+//     });
+//     await book1.save();
+//     await book2.save();
+//     await book3.save();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// bookData();
 
 app.use(getBooks);
 app.use(createBooks);

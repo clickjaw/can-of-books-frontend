@@ -20,9 +20,9 @@ export default class DeleteBook extends Component {
 
   render() {
     return (
-      <>
-        <Button onClick={this.handleDelete}>Delete</Button>
-      </>
+      <div >
+        <Button variant="danger" className="DeleteButton" onClick={this.handleDelete}>Delete</Button>
+      </div>
     );
   }
 }

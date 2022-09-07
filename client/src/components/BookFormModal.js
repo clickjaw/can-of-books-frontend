@@ -19,6 +19,7 @@ export default class BookFormModal extends Component {
     e.preventDefault();
     const url = `http://localhost:3002/new-book`;
     let newBookBody = {
+      img: e.target.img.value,
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
@@ -28,6 +29,7 @@ export default class BookFormModal extends Component {
         .post(url, newBookBody)
         .then((res) => this.props.addNewBooks(res.data))
         .catch((err) => console.log(err.message));
+        e.target.img.value = "";
       e.target.title.value = "";
       e.target.description.value = "";
       e.target.status.value = "";
@@ -53,7 +55,14 @@ export default class BookFormModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={this.handleFormSubmit}>
+        <Form onSubmit={this.handleFormSubmit}>
+            <Form.Group className="mb-3" controlId="img">
+              <Form.Label>Book Cover</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Please enter a img url https://"
+              />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Book Title </Form.Label>
               <Form.Control

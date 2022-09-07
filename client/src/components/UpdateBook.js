@@ -17,6 +17,7 @@ export default class UpdataBook extends Component {
     // get the direct url to the book the user wants to delete
     const url = `http://localhost:3002/updatebook/${this.state.book_id}`;
     let editedBook = {
+      img: e.target.img.value,
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
@@ -44,7 +45,7 @@ export default class UpdataBook extends Component {
   render() {
     return (
       <>
-        <Button onClick={this.handleOpen}>Edit</Button>
+        <Button className="EditBook" variant="warning" onClick={this.handleOpen}>Edit</Button>
         <Modal
           show={this.state.clicked}
           onHide={this.handleClosed}
@@ -60,6 +61,13 @@ export default class UpdataBook extends Component {
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleUpdate}>
+            <Form.Group className="mb-3" controlId="img">
+              <Form.Label>Book Title </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Please enter a img url https://"
+              />
+            </Form.Group>
               <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Book Title </Form.Label>
                 <Form.Control type="text" placeholder="The 3 Little Pigs" />
