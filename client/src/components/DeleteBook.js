@@ -14,7 +14,7 @@ export default class DeleteBook extends Component {
   handleDelete = async () => {
     // get the direct url to the book the user wants to delete
     try {
-      const url = `http://localhost:3002/books/${this.state.book_id}`;
+      const url = `${process.env.REACT_APP_HOST}/books/${this.state.book_id}`;
       await axios.delete(url);
       this.props.getAllBooks();
     } catch (error) {

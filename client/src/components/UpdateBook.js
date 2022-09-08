@@ -15,7 +15,7 @@ export default class UpdataBook extends Component {
   handleUpdate = async (e) => {
     e.preventDefault();
     // get the direct url to the book the user wants to delete
-    const url = `http://localhost:3002/updatebook/${this.state.book_id}`;
+    const url = `${process.env.REACT_APP_HOST}/updatebook/${this.state.book_id}`;
     let editedBook = {
       img: e.target.img.value,
       title: e.target.title.value,

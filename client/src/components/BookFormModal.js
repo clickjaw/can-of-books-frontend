@@ -17,7 +17,7 @@ export default class BookFormModal extends Component {
 
   handleFormSubmit = async (e) => {
     e.preventDefault();
-    const url = `http://localhost:3002/new-book`;
+    const url = `${process.env.REACT_APP_HOST}/new-book`;
     let newBookBody = {
       img: e.target.img.value,
       title: e.target.title.value,

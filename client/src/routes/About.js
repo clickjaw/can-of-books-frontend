@@ -10,7 +10,7 @@ export default class Profile extends Component {
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand>Can Of Books</Navbar.Brand>
           <NavItem>
-            <Link to="/books" className="nav-link">
+            <Link to="/" className="nav-link">
               Home
             </Link>
           </NavItem>
